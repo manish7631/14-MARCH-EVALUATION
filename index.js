@@ -269,6 +269,110 @@ app.delete("/masteraccount/:id", async (res, req) => {
   }
 });
 
+//----------------------------SAVINGACCOUNT--------------------------
+
+
+
+
+app.get("/savingaccount", async (res, req) => {
+  try {
+      const details = await Saving_account.find().lean().exec();
+      return res.statu(201).send(details)
+  }
+  catch(e) {
+      return res.statusCode(500).send(e.message)
+  }
+})
+
+app.post("/savingaccount", async (res, req) => {
+  try {
+      const details = await Saving_account.create(req.body);
+      return res.statu(201).send(details)
+  }
+  catch(e) {
+      return res.statusCode(500).send(e.message)
+  }
+})
+
+
+app.patch("/savingaccount/:id", async (res, req) => {
+  try {
+      const details = await Saving_account.findByIdAndUpdate(req.params.id, req.body,
+          {
+              new: true
+          }
+      ).lean().exec();
+      return res.statu(201).send(details)
+  }
+  catch(e) {
+      return res.statusCode(500).send(e.message)
+  }
+})
+
+
+app.delete("/savingaccount/:id", async (res, req) => {
+  try {
+      const details = await Saving_account.findByIdAndDelete(req.params.id).lean().exec();
+      return res.statu(201).send(details)
+  }
+  catch (e) {
+      return res.statusCode(500).send(e.message)
+  }
+});
+
+
+
+app.get("/fixedaccount", async (res, req) => {
+  try {
+      const details = await fixed_account.find().lean().exec();
+      return res.statu(201).send(details)
+  }
+  catch(e) {
+      return res.statusCode(500).send(e.message)
+  }
+})
+
+
+app.post("/fixedaccount", async (res, req) => {
+  try {
+      const details = await fixed_account.create(req.body);
+      return res.statu(201).send(details)
+  }
+  catch(e) {
+      return res.statusCode(500).send(e.message)
+  }
+})
+
+
+ 
+
+app.patch("/fixedaccount/:id", async (res, req) => {
+  try {
+      const details = await fixed_account.findByIdAndUpdate(req.params.id, req.body,
+          {
+              new: true
+          }
+      ).lean().exec();
+      return res.statu(201).send(details)
+  }
+  catch(e) {
+      return res.statusCode(500).send(e.message)
+  }
+})
+
+// 4 delete
+app.delete("/fixedaccount/:id", async (res, req) => {
+  try {
+      const details = await fixed_account.findByIdAndDelete(req.params.id).lean().exec();
+      return res.statu(201).send(details)
+  }
+  catch (e) {
+      return res.statusCode(500).send(e.message)
+  }
+});
+
+
+
 
 
  

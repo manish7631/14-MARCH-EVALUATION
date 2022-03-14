@@ -168,6 +168,58 @@ app.delete("/user/:id", async (res, req) => {
 })
 
 
+// --------------------------BRANCH--------------------------------
+
+
+
+app.get("/branch", async (res, req) => {
+  try {
+      const details = await Branch.find().lean().exec();
+      return res.statu(201).send(details)
+  }
+  catch(e) {
+      return res.statusCode(500).send(e.message)
+  }
+})
+
+
+app.post("/branch", async (res, req) => {
+  try {
+      const details = await Branch.create(req.body);
+      return res.statu(201).send(details)
+  }
+  catch(e) {
+      return res.statusCode(500).send(e.message)
+  }
+})
+
+
+app.patch("/branch/:id", async (res, req) => {
+  try {
+      const details = await Branch.findByIdAndUpdate(req.params.id, req.body,
+          {
+              new: true
+          }
+      ).lean().exec();
+      return res.statu(201).send(details)
+  }
+  catch(e) {
+      return res.statusCode(500).send(e.message)
+  }
+})
+
+
+app.delete("/branch/:id", async (res, req) => {
+  try {
+      const details = await Branch.findByIdAndDelete(req.params.id).lean().exec();
+      return res.statu(201).send(details)
+  }
+  catch(e) {
+      return res.statusCode(500).send(e.message)
+  }
+})
+
+
 
 app.listen(2000, async () => {
     try {
